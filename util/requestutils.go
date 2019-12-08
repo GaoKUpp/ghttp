@@ -23,12 +23,9 @@ type UserStandardParam struct {
 	Cookies map[string]string      `json:"cookies, omitempty"`
 }
 
-// TODO Set cookie
 // TODO Set proxy
 // TODO Form request
 // TODO Upload file
-// TODO More method
-
 func (userParam *UserStandardParam) APIGet() *definestruct.OutStandardResult {
 
 	userParam.CommonHandleUrl()

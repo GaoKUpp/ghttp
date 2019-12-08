@@ -23,12 +23,9 @@ type UserStandardParam struct {
 	Cookies map[string]string      `json:"cookies, omitempty"`
 }
 
-// TODO Set cookie
 // TODO Set proxy
 // TODO Form request
 // TODO Upload file
-// TODO More method
-
 func (userParam *UserStandardParam) APIGet() *definestruct.OutStandardResult {
 
 	userParam.CommonHandleUrl()
@@ -47,6 +44,40 @@ func (userParam *UserStandardParam) APIPost() *definestruct.OutStandardResult {
 	body := JsonDumps(userParam.Body)
 
 	result := userParam.baseAPI(conf.HTTP_POST, userParam.Url, strings.NewReader(body))
+
+	return result
+}
+
+
+// PUT 方法目前只支持请求体参数
+func (userParam *UserStandardParam) APIPut() *definestruct.OutStandardResult {
+	userParam.CommonHandleUrl()
+
+	body := JsonDumps(userParam.Body)
+
+	result := userParam.baseAPI(conf.HTTP_PUT, userParam.Url, strings.NewReader(body))
+
+	return result
+}
+
+// PATCH 方法目前只支持请求体参数
+func (userParam *UserStandardParam) APIPatch() *definestruct.OutStandardResult {
+	userParam.CommonHandleUrl()
+
+	body := JsonDumps(userParam.Body)
+
+	result := userParam.baseAPI(conf.HTTP_PATCH, userParam.Url, strings.NewReader(body))
+
+	return result
+}
+
+// DELETE 方法目前只支持请求体参数
+func (userParam *UserStandardParam) APIDelete() *definestruct.OutStandardResult {
+	userParam.CommonHandleUrl()
+
+	body := JsonDumps(userParam.Body)
+
+	result := userParam.baseAPI(conf.HTTP_DELETE, userParam.Url, strings.NewReader(body))
 
 	return result
 }

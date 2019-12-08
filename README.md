@@ -57,7 +57,13 @@ you also can create shortcuts for https: alias ghttps=ghttp -s=true
   ghttp post example.org name=Tom numberList:=\[1,2,3\]
   ```
 
++ PUT
 
+  ```
+  ghttp put example.org name=Tom
+  ```
+
+  
 
 + Header
 
@@ -66,6 +72,18 @@ you also can create shortcuts for https: alias ghttps=ghttp -s=true
   ```
 
 
+
++ Cookie
+
+  ```
+  ghttp get httpbin.org/get Cookie:name=Tom
+  ```
+
+  ```
+  ghttp get httpbin.org/get Cookie:name=Tom\;age=15
+  ```
+
+  
 
 + Pipe line
 

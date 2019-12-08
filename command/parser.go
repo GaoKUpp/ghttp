@@ -116,6 +116,26 @@ func parseHeader() map[string]string {
 	return result
 }
 
+func parseCookie() map[string]string {
+
+	result := make(map[string]string)
+
+	cookieStr, ok := UserStandParam.Headers[conf.COOKIE_SIGN]
+
+	if ok {
+		cookies := strings.Split(cookieStr, conf.COOKIE_SEPARATOR)
+
+		for _, item := range cookies {
+			tmp := strings.Split(item, "=")
+			result[tmp[0]] = tmp[1]
+		}
+
+		delete(UserStandParam.Headers, conf.COOKIE_SIGN)
+	}
+
+	return result
+}
+
 func parseProto() string {
 	result := conf.HTTP
 	if UseHttps {
@@ -140,6 +160,7 @@ func parseOptionEle() {
 		UserStandParam.Body = parseBody()
 	}
 	UserStandParam.Headers = parseHeader()
+	UserStandParam.Cookies = parseCookie()
 	UserStandParam.Proto = parseProto()
 	UserStandParam.TimeOut = parseTimeOut()
 }

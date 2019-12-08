@@ -51,6 +51,40 @@ func (userParam *UserStandardParam) APIPost() *definestruct.OutStandardResult {
 	return result
 }
 
+
+// PUT 方法目前只支持请求体参数
+func (userParam *UserStandardParam) APIPut() *definestruct.OutStandardResult {
+	userParam.CommonHandleUrl()
+
+	body := JsonDumps(userParam.Body)
+
+	result := userParam.baseAPI(conf.HTTP_PUT, userParam.Url, strings.NewReader(body))
+
+	return result
+}
+
+// PATCH 方法目前只支持请求体参数
+func (userParam *UserStandardParam) APIPatch() *definestruct.OutStandardResult {
+	userParam.CommonHandleUrl()
+
+	body := JsonDumps(userParam.Body)
+
+	result := userParam.baseAPI(conf.HTTP_PATCH, userParam.Url, strings.NewReader(body))
+
+	return result
+}
+
+// DELETE 方法目前只支持请求体参数
+func (userParam *UserStandardParam) APIDelete() *definestruct.OutStandardResult {
+	userParam.CommonHandleUrl()
+
+	body := JsonDumps(userParam.Body)
+
+	result := userParam.baseAPI(conf.HTTP_DELETE, userParam.Url, strings.NewReader(body))
+
+	return result
+}
+
 func (userParam *UserStandardParam) baseAPI(method, url string, body io.Reader) *definestruct.OutStandardResult {
 
 	request, err := http.NewRequest(method, url, body)
